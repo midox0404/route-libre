@@ -1247,19 +1247,38 @@ button {
   gap: 1.35rem;
 }
 
-.social-bar,
-.callback-box {
+.social-bar {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 1.55rem;
+  padding: 1.65rem;
+}
+
+.callback-box {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-md);
+  padding: 1.65rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.callback-eyebrow {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--accent);
+  margin-bottom: 0.45rem;
 }
 
 .social-bar h3,
 .callback-box h3 {
   font-family: var(--font-display);
-  font-size: 1.45rem;
+  font-size: 1.55rem;
   font-weight: 600;
+  line-height: 1.2;
   margin-bottom: 0.45rem;
 }
 
@@ -1297,31 +1316,50 @@ button {
 }
 
 .callback-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+.callback-form .callback-phone-wrap {
+  grid-column: 1 / -1;
   display: flex;
   gap: 0.65rem;
   flex-wrap: wrap;
 }
 
-.callback-form input {
-  flex: 1;
-  min-width: 180px;
+.callback-form input,
+.callback-form select {
+  width: 100%;
   background-color: var(--bg-page);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
-  padding: 0.7rem 0.9rem;
+  padding: 0.72rem 0.9rem;
   font-size: 0.88rem;
+  color: var(--ink-primary);
 }
 
-.callback-form input:focus {
+.callback-form .callback-phone-wrap input {
+  flex: 1;
+  min-width: 190px;
+}
+
+.callback-form input:focus,
+.callback-form select:focus {
   outline: none;
   border-color: var(--accent);
 }
 
 .callback-feedback {
-  margin-top: 0.75rem;
-  font-size: 0.82rem;
-  color: hsl(142, 56%, 28%);
+  margin-top: 0.85rem;
+  padding: 0.8rem 0.95rem;
+  border-radius: var(--radius-sm);
+  background-color: hsla(142, 52%, 34%, 0.1);
+  border: 1px solid hsla(142, 56%, 28%, 0.3);
+  font-size: 0.83rem;
+  color: hsl(142, 56%, 24%);
   font-weight: 500;
+  line-height: 1.45;
   display: none;
 }
 
@@ -1342,7 +1380,7 @@ button {
 }
 
 .concierge-popover {
-  width: 300px;
+  width: 318px;
   background-color: var(--bg-surface);
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-md);
@@ -1395,6 +1433,56 @@ button {
 .concierge-channel-item:hover {
   background-color: var(--bg-page);
   border-color: var(--ink-primary);
+}
+
+.concierge-callback {
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.concierge-callback-title {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 0.45rem;
+}
+
+.concierge-callback-form {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.concierge-callback-form input {
+  flex: 1;
+  min-width: 0;
+  background-color: var(--bg-page);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.65rem;
+  font-size: 0.8rem;
+}
+
+.concierge-callback-form input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.concierge-callback-form button {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.78rem;
+}
+
+.concierge-callback-feedback {
+  margin-top: 0.5rem;
+  font-size: 0.76rem;
+  color: hsl(142, 56%, 28%);
+  font-weight: 600;
+  display: none;
+}
+
+.concierge-callback-feedback.is-visible {
+  display: block;
 }
 
 .concierge-trigger {
@@ -1640,7 +1728,8 @@ button {
 }
 
 @media (max-width: 560px) {
-  .booking-bar {
+  .booking-bar,
+  .callback-form {
     grid-template-columns: 1fr;
   }
   .footer-grid {

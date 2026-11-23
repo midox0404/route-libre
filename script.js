@@ -564,17 +564,24 @@ function setupListeners() {
     });
   });
 
-  // Callback request form
+  // Callback request form ("Vous n'avez pas de solde ?")
   const callbackForm = document.getElementById('callback-form');
   callbackForm?.addEventListener('submit', (e) => {
     e.preventDefault();
     const phoneInput = document.getElementById('callback-phone');
+    const nameInput = document.getElementById('callback-name');
+    const slotSelect = document.getElementById('callback-slot');
     const feedback = document.getElementById('callback-feedback');
-    const phone = phoneInput.value.trim();
+    const phone = phoneInput?.value.trim();
     if (!phone) return;
-    feedback.textContent = `Demande de rappel enregistrée pour le ${phone}. Un conseiller vous rappelle sous 15 min.`;
+    const name = nameInput?.value.trim();
+    const slot = slotSelect?.value || 'dès que possible (< 15 min)';
+    const ref = `RL-RAPPEL-${Math.floor(1000 + Math.random() * 9000)}`;
+    const greeting = name ? `Merci ${name} ! ` : 'Merci ! ';
+    feedback.innerHTML = `<strong>${greeting}Votre demande de rappel gratuit est enregistrée (${ref}).</strong><br />Un conseiller Route Libre vous rappellera au <strong>${phone}</strong> ${slot}.`;
     feedback.classList.add('is-visible');
     phoneInput.value = '';
+    if (nameInput) nameInput.value = '';
   });
 
   // Floating Concierge Widget
@@ -599,6 +606,19 @@ function setupListeners() {
     if (conciergeFab && !conciergeFab.contains(e.target)) {
       setConciergeOpen(false);
     }
+  });
+
+  // Quick "Pas de solde ?" callback form inside floating widget
+  const fabCallbackForm = document.getElementById('fab-callback-form');
+  fabCallbackForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const phoneInput = document.getElementById('fab-callback-phone');
+    const feedback = document.getElementById('fab-callback-feedback');
+    const phone = phoneInput?.value.trim();
+    if (!phone) return;
+    feedback.textContent = `C’est noté ! Nous vous rappelons gratuitement au ${phone} sous 15 min.`;
+    feedback.classList.add('is-visible');
+    phoneInput.value = '';
   });
 
   // Scroll Reveal Observer
