@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ROUTE LIBRE — Interactive Fleet, Estimator, Modal & Booking Logic
+   ROUTE LIBRE — Executive Fleet, Live Quote Engine, Callbacks & Scroll-Spy
    ========================================================================== */
 
 const FLEET = [
@@ -7,10 +7,11 @@ const FLEET = [
     id: 'volta-e-compact',
     name: 'Volta E-Compact',
     category: 'Citadine',
+    availability: 'Disponible aujourd’hui',
     energy: '100% Électrique',
     transmission: 'Automatique',
     seats: '5 places',
-    power: '204 ch · 420 km',
+    power: '204 ch · 420 km WLTP',
     luggage: '3 valises',
     deposit: '600 €',
     pricePerDay: 78,
@@ -19,14 +20,15 @@ const FLEET = [
       'Silencieuse et agile, idéale pour circuler librement en centre-ville et prolonger le séjour sur les petites routes côtières.',
     perks: [
       'Badge recharge rapide inclus (Ionity & Fastned)',
-      'Caméra 360° et Apple CarPlay sans fil',
-      'Kilométrage 300 km/jour inclus'
+      'Caméra 360° et Apple CarPlay / Android Auto sans fil',
+      'Forfait 300 km/jour inclus'
     ]
   },
   {
     id: 'souveraine-s-line',
     name: 'Souveraine S-Line',
     category: 'Berline',
+    availability: 'Disponible aujourd’hui',
     energy: 'Hybride',
     transmission: 'Automatique',
     seats: '5 places',
@@ -40,13 +42,14 @@ const FLEET = [
     perks: [
       'Sellerie cuir Nappa et sièges ventilés',
       'Audio haute fidélité 15 haut-parleurs',
-      'Livraison possible en gare TGV ou hôtel'
+      'Facturation entreprise & livraison gare TGV'
     ]
   },
   {
     id: 'alpinia-rover-phev',
     name: 'Alpinia Rover PHEV',
     category: 'SUV',
+    availability: 'Disponible aujourd’hui',
     energy: 'Hybride Rechargeable',
     transmission: '4×4 Auto',
     seats: '5 places',
@@ -58,8 +61,8 @@ const FLEET = [
     description:
       'Transmission intégrale et volume généreux, pensée pour aborder sereinement les cols alpins, les stations ou les escapades familiales.',
     perks: [
-      'Équipement hiver & chaînes sur demande',
-      'Toit panoramique et attelage discret',
+      'Équipement hiver & chaînes disponibles sur demande',
+      'Toit panoramique ouvrant et coffre mains libres',
       'Assistance montagne 24h/24 incluse'
     ]
   },
@@ -67,6 +70,7 @@ const FLEET = [
     id: 'riviera-spider-65',
     name: 'Riviera Spider 65',
     category: 'Cabriolet',
+    availability: 'Très demandé',
     energy: 'Essence',
     transmission: 'Manuelle Sport',
     seats: '2 places',
@@ -87,6 +91,7 @@ const FLEET = [
     id: 'atlantique-grand-van',
     name: 'Atlantique Grand Van',
     category: 'Van',
+    availability: 'Disponible aujourd’hui',
     energy: 'Diesel Euro 6d',
     transmission: 'Automatique',
     seats: '7 places',
@@ -107,6 +112,7 @@ const FLEET = [
     id: 'aurelia-gt-coupe',
     name: 'Aurelia GT Coupé',
     category: 'Berline',
+    availability: 'Sur réservation',
     energy: 'Essence V8',
     transmission: 'Automatique 8 rap.',
     seats: '2+2 places',
@@ -133,10 +139,11 @@ const state = {
   returnDate: '',
   days: 3,
   selectedCarId: 'riviera-spider-65',
-  highlightedCarId: null
+  highlightedCarId: null,
+  quoteRef: `RL-2026-${Math.floor(1000 + Math.random() * 9000)}`,
+  addons: []
 };
 
-// Format date as YYYY-MM-DD
 function toDateInputValue(date) {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -160,6 +167,21 @@ function computeDays(startStr, endStr) {
   return diff >= 1 ? diff : 1;
 }
 
+function getSelectedCar() {
+  return FLEET.find((c) => c.id === state.selectedCarId) || FLEET[0];
+}
+
+function computeAddonsTotal() {
+  return state.addons.reduce((sum, addon) => {
+    return sum + (addon.type === 'daily' ? addon.price * state.days : addon.price);
+  }, 0);
+}
+
+function computeGrandTotal() {
+  const car = getSelectedCar();
+  return car.pricePerDay * state.days + computeAddonsTotal();
+}
+
 function initDates() {
   const today = new Date();
   const start = new Date(today);
@@ -171,18 +193,15 @@ function initDates() {
   state.returnDate = toDateInputValue(end);
   state.days = 3;
 
-  const heroPickup = document.getElementById('hero-pickup');
-  const heroReturn = document.getElementById('hero-return');
-  const formPickup = document.getElementById('form-pickup');
-  const formReturn = document.getElementById('form-return');
-
-  [heroPickup, formPickup].forEach((el) => {
+  ['hero-pickup', 'form-pickup'].forEach((id) => {
+    const el = document.getElementById(id);
     if (el) {
       el.min = toDateInputValue(today);
       el.value = state.pickupDate;
     }
   });
-  [heroReturn, formReturn].forEach((el) => {
+  ['hero-return', 'form-return'].forEach((id) => {
+    const el = document.getElementById(id);
     if (el) {
       el.min = state.pickupDate;
       el.value = state.returnDate;
@@ -194,7 +213,6 @@ function syncDates(newStart, newEnd) {
   if (newStart) state.pickupDate = newStart;
   if (newEnd) state.returnDate = newEnd;
 
-  // Ensure return >= pickup + 1 day
   const startObj = new Date(state.pickupDate);
   const endObj = new Date(state.returnDate);
   if (endObj <= startObj) {
@@ -205,13 +223,12 @@ function syncDates(newStart, newEnd) {
 
   state.days = computeDays(state.pickupDate, state.returnDate);
 
-  const ids = [
+  [
     ['hero-pickup', state.pickupDate],
     ['hero-return', state.returnDate],
     ['form-pickup', state.pickupDate],
     ['form-return', state.returnDate]
-  ];
-  ids.forEach(([id, val]) => {
+  ].forEach(([id, val]) => {
     const el = document.getElementById(id);
     if (el && el.value !== val) el.value = val;
   });
@@ -252,7 +269,10 @@ function renderFleet() {
         <article class="car-card ${isHighlighted ? 'is-highlighted' : ''}" data-car-id="${car.id}">
           <div class="car-media">
             <img src="${car.image}" alt="${car.name} — ${car.category} Route Libre" loading="lazy" />
-            <span class="car-category-tag">${car.category}</span>
+            <div class="car-media-badges">
+              <span class="car-category-tag">${car.category}</span>
+              <span class="car-status-tag">${car.availability}</span>
+            </div>
           </div>
           <div class="car-body">
             <div class="car-header">
@@ -276,8 +296,8 @@ function renderFleet() {
                 <span class="spec-val">${car.seats}</span>
               </div>
               <div class="spec-item">
-                <span class="spec-label">Bagages</span>
-                <span class="spec-val">${car.luggage.split(' ')[0]} ${car.luggage.split(' ')[1] || ''}</span>
+                <span class="spec-label">Caution</span>
+                <span class="spec-val tabular">${car.deposit}</span>
               </div>
             </div>
             <div class="car-actions">
@@ -296,31 +316,56 @@ function renderFleet() {
 }
 
 function renderSummary() {
-  const car = FLEET.find((c) => c.id === state.selectedCarId) || FLEET[0];
-  const img = document.getElementById('summary-car-img');
-  const name = document.getElementById('summary-car-name');
-  const meta = document.getElementById('summary-car-meta');
-  const agency = document.getElementById('summary-agency');
-  const dates = document.getElementById('summary-dates');
-  const rate = document.getElementById('summary-rate');
-  const total = document.getElementById('summary-total');
-  const formCarSelect = document.getElementById('form-vehicle');
+  const car = getSelectedCar();
+  const grandTotal = computeGrandTotal();
 
+  const img = document.getElementById('summary-car-img');
   if (img) {
     img.src = car.image;
     img.alt = car.name;
   }
-  if (name) name.textContent = car.name;
-  if (meta) meta.textContent = `${car.category} · ${car.energy} · ${car.transmission}`;
-  if (agency) agency.textContent = state.agency;
-  if (dates) {
-    dates.textContent = `${state.pickupDate} → ${state.returnDate} (${state.days} j)`;
+  const setText = (id, text) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
+  };
+
+  setText('summary-ref', `DEVIS #${state.quoteRef}`);
+  setText('summary-car-name', car.name);
+  setText('summary-car-meta', `${car.category} · ${car.energy} · ${car.transmission}`);
+  setText('summary-agency', state.agency);
+  setText('summary-dates', `${state.pickupDate} → ${state.returnDate} (${state.days} j)`);
+  setText('summary-rate', `${formatEuro(car.pricePerDay)} × ${state.days} jour${state.days > 1 ? 's' : ''}`);
+  setText('summary-deposit', car.deposit);
+  setText('summary-total', formatEuro(grandTotal));
+
+  const addonsRows = document.getElementById('summary-addons-rows');
+  if (addonsRows) {
+    addonsRows.innerHTML = state.addons
+      .map((addon) => {
+        const cost = addon.type === 'daily' ? addon.price * state.days : addon.price;
+        const priceLabel = cost === 0 ? 'Offert' : `+${formatEuro(cost)}`;
+        return `<div class="summary-row"><span>${addon.label}</span><strong>${priceLabel}</strong></div>`;
+      })
+      .join('');
   }
-  if (rate) rate.textContent = `${formatEuro(car.pricePerDay)} × ${state.days} jour${state.days > 1 ? 's' : ''}`;
-  if (total) total.textContent = formatEuro(car.pricePerDay * state.days);
+
+  const formCarSelect = document.getElementById('form-vehicle');
   if (formCarSelect && formCarSelect.value !== car.id) {
     formCarSelect.value = car.id;
   }
+
+  // Sync dynamic WhatsApp pre-filled links
+  const addonNames = state.addons.length
+    ? ` | Options : ${state.addons.map((a) => a.label).join(', ')}`
+    : '';
+  const waMsg = encodeURIComponent(
+    `Bonjour Route Libre, je souhaite un devis (${state.quoteRef}) pour la ${car.name} du ${state.pickupDate} au ${state.returnDate} (${state.days} j) au départ de ${state.agency}${addonNames}. Total estimé : ${formatEuro(grandTotal)}.`
+  );
+  const waUrl = `https://wa.me/33648127930?text=${waMsg}`;
+  ['whatsapp-direct-link', 'fab-whatsapp-link'].forEach((id) => {
+    const link = document.getElementById(id);
+    if (link) link.href = waUrl;
+  });
 }
 
 function openVehicleModal(carId) {
@@ -330,7 +375,7 @@ function openVehicleModal(carId) {
   const backdrop = document.getElementById('vehicle-modal');
   document.getElementById('modal-img').src = car.image;
   document.getElementById('modal-img').alt = car.name;
-  document.getElementById('modal-category').textContent = `${car.category} · ${car.energy}`;
+  document.getElementById('modal-category').textContent = `${car.category} · ${car.energy} · ${car.availability}`;
   document.getElementById('modal-title').textContent = car.name;
   document.getElementById('modal-desc').textContent = car.description;
   document.getElementById('modal-power').textContent = car.power;
@@ -339,12 +384,8 @@ function openVehicleModal(carId) {
   document.getElementById('modal-deposit').textContent = car.deposit;
   document.getElementById('modal-price').textContent = `${formatEuro(car.pricePerDay)} / jour`;
   document.getElementById('modal-total').textContent = `Soit ${formatEuro(car.pricePerDay * state.days)} estimés pour ${state.days} jour${state.days > 1 ? 's' : ''}`;
-
-  const perksList = document.getElementById('modal-perks');
-  perksList.innerHTML = car.perks.map((perk) => `<li>${perk}</li>`).join('');
-
-  const bookBtn = document.getElementById('modal-book-btn');
-  bookBtn.dataset.carId = car.id;
+  document.getElementById('modal-perks').innerHTML = car.perks.map((p) => `<li>${p}</li>`).join('');
+  document.getElementById('modal-book-btn').dataset.carId = car.id;
 
   backdrop.classList.add('is-open');
   backdrop.setAttribute('aria-hidden', 'false');
@@ -362,10 +403,7 @@ function selectCarAndScroll(carId) {
   state.selectedCarId = carId;
   renderFleet();
   renderSummary();
-  const contactSection = document.getElementById('contact');
-  if (contactSection) {
-    contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
+  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function populateVehicleSelect() {
@@ -377,16 +415,46 @@ function populateVehicleSelect() {
   select.value = state.selectedCarId;
 }
 
+function syncAddonsFromDom() {
+  const checked = [];
+  document.querySelectorAll('.addon-checkbox:checked').forEach((input) => {
+    checked.push({
+      id: input.dataset.addon,
+      label: input.dataset.label,
+      type: input.dataset.type,
+      price: Number(input.dataset.price || 0)
+    });
+  });
+  state.addons = checked;
+  renderSummary();
+}
+
+function setupScrollSpy() {
+  const sections = document.querySelectorAll('main section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  if (!sections.length || !navLinks.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach((link) => {
+            link.classList.toggle('is-active', link.getAttribute('href') === `#${id}`);
+          });
+        }
+      });
+    },
+    { rootMargin: '-40% 0px -50% 0px' }
+  );
+
+  sections.forEach((sec) => observer.observe(sec));
+}
+
 function setupListeners() {
-  // Sticky Header Scroll State
+  // Sticky Header
   const header = document.getElementById('site-header');
-  const onScroll = () => {
-    if (window.scrollY > 40) {
-      header.classList.add('is-scrolled');
-    } else {
-      header.classList.remove('is-scrolled');
-    }
-  };
+  const onScroll = () => header?.classList.toggle('is-scrolled', window.scrollY > 36);
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
@@ -406,13 +474,11 @@ function setupListeners() {
       mobileDrawer.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
     };
-    mobileClose.addEventListener('click', closeDrawer);
-    mobileDrawer.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', closeDrawer);
-    });
+    mobileClose?.addEventListener('click', closeDrawer);
+    mobileDrawer.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeDrawer));
   }
 
-  // Hero Booking Bar
+  // Hero Booking Console
   const heroForm = document.getElementById('hero-booking-form');
   const heroAgency = document.getElementById('hero-agency');
   const heroPickup = document.getElementById('hero-pickup');
@@ -436,17 +502,15 @@ function setupListeners() {
     if (formAgency) formAgency.value = state.agency;
     syncDates(heroPickup.value, heroReturn.value);
 
-    const chosenCat = heroCategory.value;
-    state.category = chosenCat;
+    state.category = heroCategory.value;
     document.querySelectorAll('.filter-tab').forEach((tab) => {
-      tab.classList.toggle('is-active', tab.dataset.category === chosenCat);
+      tab.classList.toggle('is-active', tab.dataset.category === state.category);
     });
     renderFleet();
-
     document.getElementById('flotte')?.scrollIntoView({ behavior: 'smooth' });
   });
 
-  // Category Filter Tabs
+  // Category Tabs
   document.querySelectorAll('.filter-tab').forEach((tab) => {
     tab.addEventListener('click', () => {
       state.category = tab.dataset.category;
@@ -463,19 +527,16 @@ function setupListeners() {
     renderFleet();
   });
 
-  // Fleet Grid Actions (Delegation)
+  // Fleet Grid Actions
   document.getElementById('fleet-grid')?.addEventListener('click', (e) => {
     const btn = e.target.closest('button[data-action]');
     if (!btn) return;
     const { action, carId } = btn.dataset;
-    if (action === 'details') {
-      openVehicleModal(carId);
-    } else if (action === 'select') {
-      selectCarAndScroll(carId);
-    }
+    if (action === 'details') openVehicleModal(carId);
+    if (action === 'select') selectCarAndScroll(carId);
   });
 
-  // Modal Close & Book
+  // Modal Controls
   document.getElementById('modal-close-btn')?.addEventListener('click', closeVehicleModal);
   document.getElementById('vehicle-modal')?.addEventListener('click', (e) => {
     if (e.target.id === 'vehicle-modal') closeVehicleModal();
@@ -489,7 +550,7 @@ function setupListeners() {
     selectCarAndScroll(carId);
   });
 
-  // Road Trip Recommendations -> Highlight Car
+  // Road Trip Recommendations
   document.querySelectorAll('[data-recommend-car]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const carId = btn.dataset.recommendCar;
@@ -499,14 +560,14 @@ function setupListeners() {
         t.classList.toggle('is-active', t.dataset.category === 'Tous');
       });
       renderFleet();
-      const targetCard = document.querySelector(`.car-card[data-car-id="${carId}"]`);
-      if (targetCard) {
-        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
+      document.querySelector(`.car-card[data-car-id="${carId}"]`)?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
     });
   });
 
-  // Contact / Reservation Form Sync
+  // Checkout Form Sync & Addons
   document.getElementById('form-vehicle')?.addEventListener('change', (e) => {
     state.selectedCarId = e.target.value;
     renderFleet();
@@ -523,36 +584,66 @@ function setupListeners() {
   document.getElementById('form-return')?.addEventListener('change', (e) =>
     syncDates(state.pickupDate, e.target.value)
   );
+  document.querySelectorAll('.addon-checkbox').forEach((box) => {
+    box.addEventListener('change', syncAddonsFromDom);
+  });
 
-  // Contact Form Submission
-  const reservationForm = document.getElementById('reservation-form');
-  reservationForm?.addEventListener('submit', (e) => {
+  // Copy & Print Quote Buttons
+  document.getElementById('copy-quote-btn')?.addEventListener('click', (e) => {
+    const btn = e.currentTarget;
+    const car = getSelectedCar();
+    const total = computeGrandTotal();
+    const addonsText = state.addons.length
+      ? `\nOptions : ${state.addons.map((a) => a.label).join(', ')}`
+      : '';
+    const summaryText = `Devis Route Libre #${state.quoteRef}\nVéhicule : ${car.name} (${car.category})\nAgence : ${state.agency}\nPériode : ${state.pickupDate} → ${state.returnDate} (${state.days} j)${addonsText}\nTotal estimé TTC : ${formatEuro(total)}`;
+    const confirmCopy = () => {
+      const orig = btn.textContent;
+      btn.textContent = 'Devis copié ✓';
+      setTimeout(() => {
+        btn.textContent = orig;
+      }, 1800);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(summaryText).then(confirmCopy).catch(confirmCopy);
+    } else {
+      confirmCopy();
+    }
+  });
+
+  document.getElementById('print-quote-btn')?.addEventListener('click', () => {
+    window.print();
+  });
+
+  // Reservation Form Submit
+  document.getElementById('reservation-form')?.addEventListener('submit', (e) => {
     e.preventDefault();
-    const clientName = document.getElementById('form-name').value.trim();
-    const clientEmail = document.getElementById('form-email').value.trim();
+    const clientName = document.getElementById('form-name')?.value.trim();
+    const clientEmail = document.getElementById('form-email')?.value.trim();
+    const clientPhone = document.getElementById('form-phone')?.value.trim();
     if (!clientName || !clientEmail) return;
 
-    const car = FLEET.find((c) => c.id === state.selectedCarId) || FLEET[0];
-    const ref = `RL-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
+    const car = getSelectedCar();
+    const total = computeGrandTotal();
     const banner = document.getElementById('confirmation-banner');
     banner.innerHTML = `
-      <strong>Demande enregistrée (${ref})</strong><br />
-      Merci ${clientName}. Votre pré-réservation pour la <strong>${car.name}</strong> (${state.days} jour${state.days > 1 ? 's' : ''}, départ ${state.agency}) a bien été simulée. Un conseiller Route Libre vous confirmerait la disponibilité à <em>${clientEmail}</em> sous 30 minutes.
+      <strong>Pré-réservation enregistrée — Réf. ${state.quoteRef}</strong><br />
+      Merci ${clientName}. Votre dossier pour la <strong>${car.name}</strong> (${state.days} j, total estimé <strong>${formatEuro(total)}</strong>, départ ${state.agency}) est pris en charge. Un conseiller Route Libre vous contactera sous 30 minutes au <strong>${clientPhone || clientEmail}</strong>.
     `;
     banner.classList.add('is-visible');
     banner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
 
-  // Copy contact details buttons
+  // Copy Contact Details Buttons
   document.querySelectorAll('.copy-btn[data-copy]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const value = btn.dataset.copy;
       const markCopied = () => {
-        const original = btn.textContent;
+        const orig = btn.textContent;
         btn.textContent = 'Copié ✓';
         btn.classList.add('is-copied');
         setTimeout(() => {
-          btn.textContent = original;
+          btn.textContent = orig;
           btn.classList.remove('is-copied');
         }, 1800);
       };
@@ -564,21 +655,24 @@ function setupListeners() {
     });
   });
 
-  // Callback request form ("Vous n'avez pas de solde ?")
-  const callbackForm = document.getElementById('callback-form');
-  callbackForm?.addEventListener('submit', (e) => {
+  // Main "Vous n'avez pas de solde ?" Callback Form
+  document.getElementById('callback-form')?.addEventListener('submit', (e) => {
     e.preventDefault();
+    const country = document.getElementById('callback-country')?.value || '';
     const phoneInput = document.getElementById('callback-phone');
     const nameInput = document.getElementById('callback-name');
     const slotSelect = document.getElementById('callback-slot');
     const feedback = document.getElementById('callback-feedback');
-    const phone = phoneInput?.value.trim();
-    if (!phone) return;
+    const rawPhone = phoneInput?.value.trim();
+    if (!rawPhone) return;
+
+    const fullPhone = rawPhone.startsWith('+') ? rawPhone : `${country} ${rawPhone}`;
     const name = nameInput?.value.trim();
     const slot = slotSelect?.value || 'dès que possible (< 15 min)';
     const ref = `RL-RAPPEL-${Math.floor(1000 + Math.random() * 9000)}`;
     const greeting = name ? `Merci ${name} ! ` : 'Merci ! ';
-    feedback.innerHTML = `<strong>${greeting}Votre demande de rappel gratuit est enregistrée (${ref}).</strong><br />Un conseiller Route Libre vous rappellera au <strong>${phone}</strong> ${slot}.`;
+
+    feedback.innerHTML = `<strong>${greeting}Rappel gratuit programmé (${ref}).</strong><br />Un conseiller Route Libre vous rappellera gratuitement au <strong>${fullPhone}</strong> ${slot}.`;
     feedback.classList.add('is-visible');
     phoneInput.value = '';
     if (nameInput) nameInput.value = '';
@@ -608,9 +702,8 @@ function setupListeners() {
     }
   });
 
-  // Quick "Pas de solde ?" callback form inside floating widget
-  const fabCallbackForm = document.getElementById('fab-callback-form');
-  fabCallbackForm?.addEventListener('submit', (e) => {
+  // Floating Quick "Pas de solde ?" Form
+  document.getElementById('fab-callback-form')?.addEventListener('submit', (e) => {
     e.preventDefault();
     const phoneInput = document.getElementById('fab-callback-phone');
     const feedback = document.getElementById('fab-callback-feedback');
@@ -631,9 +724,11 @@ function setupListeners() {
         }
       });
     },
-    { threshold: 0.12 }
+    { threshold: 0.1 }
   );
   document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+
+  setupScrollSpy();
 }
 
 document.addEventListener('DOMContentLoaded', () => {

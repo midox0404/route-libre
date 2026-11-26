@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Route Libre — Location de voitures de caractère & mobilité sur-mesure</title>
+  <title>Route Libre — Maison de location de voitures &amp; conciergerie automobile</title>
   <meta
     name="description"
-    content="Route Libre, maison indépendante de location de voitures à Paris, Lyon, Nice et Biarritz. Citadines électriques, berlines, SUV alpins, cabriolets et vans."
+    content="Route Libre, maison indépendante de location de voitures haut de gamme à Paris, Lyon, Nice et Biarritz. Assurance tous risques, livraison sur-mesure et rappel gratuit sans crédit."
   />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,34 +21,39 @@
   <header id="site-header" class="site-header">
     <div class="container header-inner">
       <a href="#accueil" class="brand" aria-label="Route Libre — Accueil">
-        <span class="brand-mark" aria-hidden="true">
-          <svg width="26" height="26" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="14" cy="14" r="12.5" stroke="currentColor" stroke-width="1.35" />
-            <path d="M7.5 19.5C10.5 13 13 10.5 20.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
-            <circle cx="20.5" cy="8.5" r="2" fill="currentColor" />
-          </svg>
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+          <circle cx="14" cy="14" r="12.5" stroke="currentColor" stroke-width="1.35" />
+          <path d="M7.5 19.5C10.5 13 13 10.5 20.5 8.5" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" />
+          <circle cx="20.5" cy="8.5" r="2" fill="currentColor" />
+        </svg>
+        <span>
+          Route Libre
+          <span class="brand-sub">Conciergerie Automobile</span>
         </span>
-        <span>Route Libre</span>
       </a>
 
       <nav aria-label="Navigation principale">
         <ul class="nav-links">
           <li><a href="#flotte">La Flotte</a></li>
-          <li><a href="#experience">L’Expérience</a></li>
+          <li><a href="#experience">Engagements</a></li>
           <li><a href="#itineraires">Itinéraires</a></li>
-          <li><a href="#atelier">L’Atelier</a></li>
+          <li><a href="#avis">Avis clients</a></li>
           <li><a href="#communication">Communication</a></li>
+          <li><a href="#faq">FAQ</a></li>
         </ul>
       </nav>
 
-      <a href="#contact" class="btn btn-primary header-cta">Réserver un véhicule</a>
+      <div class="header-actions">
+        <a href="tel:+33186954210" class="header-phone" aria-label="Appeler la conciergerie">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <span class="tabular">01 86 95 42 10</span>
+        </a>
+        <a href="#contact" class="btn btn-primary header-cta">Réserver</a>
+      </div>
 
-      <button
-        id="mobile-menu-btn"
-        class="mobile-menu-btn"
-        type="button"
-        aria-label="Ouvrir le menu"
-      >
+      <button id="mobile-menu-btn" class="mobile-menu-btn" type="button" aria-label="Ouvrir le menu">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
           <line x1="3" y1="7" x2="21" y2="7" />
           <line x1="3" y1="12" x2="21" y2="12" />
@@ -68,16 +73,17 @@
     </button>
     <ul class="mobile-drawer-links">
       <li><a href="#flotte">La Flotte</a></li>
-      <li><a href="#experience">L’Expérience</a></li>
+      <li><a href="#experience">Engagements</a></li>
       <li><a href="#itineraires">Itinéraires</a></li>
-      <li><a href="#atelier">L’Atelier</a></li>
-      <li><a href="#communication">Communication</a></li>
-      <li><a href="#contact">Réserver</a></li>
+      <li><a href="#avis">Avis clients</a></li>
+      <li><a href="#communication">Communication &amp; Rappel</a></li>
+      <li><a href="#faq">Questions fréquentes</a></li>
+      <li><a href="#contact">Réserver un véhicule</a></li>
     </ul>
   </div>
 
   <main>
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section id="accueil" class="hero">
       <div class="hero-media">
         <img
@@ -88,18 +94,28 @@
       <div class="hero-scrim" aria-hidden="true"></div>
 
       <div class="container hero-content">
-        <div class="hero-copy">
-          <p class="hero-kicker">Paris · Lyon · Nice · Biarritz</p>
-          <h1>La liberté de rouler, <em>sans détour.</em></h1>
-          <p class="hero-subtitle">
-            Maison indépendante de location de véhicules sélectionnés pour leur caractère, leur
-            confort et leur fiabilité. Tarifs transparents, remise des clés personnalisée et
-            assurance sérénité incluse.
-          </p>
+        <div class="hero-top-row">
+          <div class="hero-copy">
+            <p class="hero-kicker">Paris · Lyon · Nice · Biarritz</p>
+            <h1>La liberté de rouler, <em>sans détour.</em></h1>
+            <p class="hero-subtitle">
+              Maison indépendante de location automobile dédiée aux voyageurs exigeants et aux
+              entreprises. Véhicules récents préparés sur-mesure, tarifs clairs et conciergerie 7j/7.
+            </p>
+          </div>
+
+          <div class="hero-rating-card" aria-label="Note de satisfaction client">
+            <div class="hero-rating-score">
+              <strong class="tabular">4,9</strong>
+              <span>/ 5</span>
+            </div>
+            <div class="hero-stars" aria-hidden="true">★★★★★</div>
+            <p class="hero-rating-caption">Basé sur 1 240 locations vérifiées</p>
+          </div>
         </div>
 
-        <form id="hero-booking-form" class="booking-bar" aria-label="Estimer une location">
-          <div class="booking-field">
+        <form id="hero-booking-form" class="booking-console" aria-label="Rechercher et estimer une location">
+          <div class="console-cell">
             <label for="hero-agency">Agence de départ</label>
             <select id="hero-agency" name="agency">
               <option value="Paris — 8e (Champs-Élysées)">Paris — 8e (Champs-Élysées)</option>
@@ -109,17 +125,17 @@
             </select>
           </div>
 
-          <div class="booking-field">
-            <label for="hero-pickup">Départ</label>
+          <div class="console-cell">
+            <label for="hero-pickup">Date de départ</label>
             <input id="hero-pickup" type="date" name="pickup" required />
           </div>
 
-          <div class="booking-field">
-            <label for="hero-return">Retour</label>
+          <div class="console-cell">
+            <label for="hero-return">Date de retour</label>
             <input id="hero-return" type="date" name="return" required />
           </div>
 
-          <div class="booking-field">
+          <div class="console-cell">
             <label for="hero-category">Catégorie</label>
             <select id="hero-category" name="category">
               <option value="Tous">Toutes catégories</option>
@@ -131,16 +147,61 @@
             </select>
           </div>
 
-          <button type="submit" class="btn btn-accent booking-submit">
-            Voir les disponibilités
-          </button>
+          <div class="console-cta-wrap">
+            <button type="submit" class="btn btn-accent console-submit">
+              Voir les tarifs
+            </button>
+          </div>
         </form>
+      </div>
+    </section>
 
-        <div class="hero-meta-strip">
-          <span>Assurance tous risques incluse</span>
-          <span>Annulation gratuite jusqu’à 24h</span>
-          <span>2e conducteur offert</span>
-          <span>Livraison gare &amp; hôtel sur demande</span>
+    <!-- Trust Credentials Strip -->
+    <section class="trust-strip" aria-label="Garanties Route Libre">
+      <div class="container">
+        <div class="trust-strip-grid">
+          <div class="trust-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
+            <div>
+              <strong>Assurance Sérénité incluse</strong>
+              Tous risques &amp; assistance 24h/24
+            </div>
+          </div>
+
+          <div class="trust-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <div>
+              <strong>Flotte récente (&lt; 12 mois)</strong>
+              Contrôle 40 points avant chaque départ
+            </div>
+          </div>
+
+          <div class="trust-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            <div>
+              <strong>Modification &amp; annulation souples</strong>
+              Gratuites jusqu’à 24h avant départ
+            </div>
+          </div>
+
+          <div class="trust-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            <div>
+              <strong>Pas de solde ? Rappel gratuit</strong>
+              <a href="#rappel-gratuit" style="color: var(--accent); font-weight: 600;">Laisser votre numéro →</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -153,24 +214,24 @@
             <span class="eyebrow">Collection 2026</span>
             <h2 class="section-title">Une flotte choisie avec exigence.</h2>
             <p class="section-lead">
-              Chaque modèle est retenu pour son agrément de conduite, sa finition et son adaptation
-              aux routes françaises — de la ville aux grands cols.
+              Des modèles récents sélectionnés pour leur confort acoustique, leur sécurité et leur
+              agrément de conduite. Tous nos tarifs incluent l’assurance tous risques et le second conducteur.
             </p>
           </div>
         </div>
 
         <div class="fleet-toolbar reveal">
-          <div class="filter-tabs" role="tablist" aria-label="Filtrer les véhicules par catégorie">
-            <button type="button" class="filter-tab is-active" data-category="Tous">Tous</button>
-            <button type="button" class="filter-tab" data-category="Citadine">Citadine</button>
-            <button type="button" class="filter-tab" data-category="Berline">Berline</button>
-            <button type="button" class="filter-tab" data-category="SUV">SUV</button>
-            <button type="button" class="filter-tab" data-category="Cabriolet">Cabriolet</button>
-            <button type="button" class="filter-tab" data-category="Van">Van</button>
+          <div id="filter-tabs" class="filter-tabs" role="tablist" aria-label="Filtrer par catégorie">
+            <button type="button" class="filter-tab is-active" data-category="Tous">Tous <span class="tab-count">(6)</span></button>
+            <button type="button" class="filter-tab" data-category="Citadine">Citadine <span class="tab-count">(1)</span></button>
+            <button type="button" class="filter-tab" data-category="Berline">Berline <span class="tab-count">(2)</span></button>
+            <button type="button" class="filter-tab" data-category="SUV">SUV <span class="tab-count">(1)</span></button>
+            <button type="button" class="filter-tab" data-category="Cabriolet">Cabriolet <span class="tab-count">(1)</span></button>
+            <button type="button" class="filter-tab" data-category="Van">Van <span class="tab-count">(1)</span></button>
           </div>
 
           <div class="fleet-controls-right">
-            <span id="duration-badge" class="duration-badge">Tarifs affichés pour 3 jours</span>
+            <span id="duration-badge" class="duration-badge tabular">Tarifs affichés pour 3 jours</span>
             <label for="fleet-sort" class="sr-only">Trier les véhicules</label>
             <select id="fleet-sort" class="sort-select">
               <option value="price-asc">Tarif croissant</option>
@@ -184,57 +245,80 @@
     </section>
 
     <!-- Experience Pillars -->
-    <section id="experience" class="section experience-section">
+    <section id="experience" class="section section-surface">
       <div class="container">
         <div class="reveal">
-          <span class="eyebrow">L’Expérience Route Libre</span>
-          <h2 class="section-title">La location réinventée autour du calme.</h2>
+          <span class="eyebrow">Nos Engagements</span>
+          <h2 class="section-title">Une relation claire, du devis au retour des clés.</h2>
           <p class="section-lead">
-            Finies les files d’attente en comptoir et les suppléments imprévus. Nous concevons
-            chaque départ comme le début d’un vrai voyage.
+            Nous appliquons les standards de l’hôtellerie privée à la location automobile : zéro
+            file d’attente, contrats lisibles et préparation irréprochable.
           </p>
         </div>
 
         <div class="pillars-grid">
           <article class="pillar reveal">
             <p class="pillar-num">01</p>
-            <h3>Transparence absolue</h3>
+            <h3>Tarification transparente</h3>
             <p>
-              Le tarif affiché comprend l’assurance tous risques, l’assistance 24h/24 et le second
-              conducteur. Aucune mauvaise surprise au comptoir ou au retour du véhicule.
+              Chaque devis indique clairement le forfait journalier, le kilométrage inclus, la
+              caution et les assurances. Aucune option imposée au moment de la remise des clés.
             </p>
           </article>
 
           <article class="pillar reveal">
             <p class="pillar-num">02</p>
-            <h3>Remise des clés sur-mesure</h3>
+            <h3>Livraison &amp; reprise sur-mesure</h3>
             <p>
-              Retirez votre voiture dans nos salons privés à Paris, Lyon, Nice ou Biarritz, ou
-              demandez une livraison directe à votre hôtel, gare TGV ou domicile.
+              Retrait en salon privé à Paris, Lyon, Nice ou Biarritz, ou remise directe devant votre
+              hôtel, terminal d’aéroport ou quai de gare TGV à l’heure exacte de votre arrivée.
             </p>
           </article>
 
           <article class="pillar reveal">
             <p class="pillar-num">03</p>
-            <h3>Véhicules préparés à la main</h3>
+            <h3>Suivi conciergerie 7j/7</h3>
             <p>
-              Chaque voiture est inspectée sur 40 points mécaniques et esthétiques, rechargée ou
-              ravitaillée, et configurée selon vos préférences avant votre arrivée.
+              Un conseiller joignable par téléphone, WhatsApp ou rappel gratuit pour ajuster une
+              durée, ajouter un conducteur ou organiser un itinéraire en cours de séjour.
             </p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Curated Road Trips -->
+    <!-- Corporate & Events B2B Band -->
+    <section class="b2b-band" aria-label="Offres Entreprises et Événements">
+      <div class="container b2b-inner">
+        <div class="reveal">
+          <span class="eyebrow">Entreprises &amp; Événements</span>
+          <h2 class="section-title">Solutions dédiées aux professionnels et conciergeries.</h2>
+          <p>
+            Direction générale, séminaires, mariages, productions audiovisuelles ou partenaires
+            hôteliers : bénéficiez d’une facturation mensuelle et d’un gestionnaire de compte dédié.
+          </p>
+        </div>
+        <div class="reveal">
+          <ul class="b2b-list">
+            <li>Tarifs préférentiels longue durée</li>
+            <li>Facturation entreprise &amp; TVA détaillée</li>
+            <li>Livraison multi-véhicules sur site</li>
+            <li>Option chauffeur privé sur demande</li>
+          </ul>
+          <a href="#communication" class="btn btn-outline-light">Contacter le pôle Pro →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Road Trips -->
     <section id="itineraires" class="section">
       <div class="container">
         <div class="reveal">
           <span class="eyebrow">Carnets de Route</span>
           <h2 class="section-title">Trois échappées, trois caractères.</h2>
           <p class="section-lead">
-            Parce qu’une belle voiture s’apprécie surtout sur la bonne route, nos conseillers
-            partagent leurs itinéraires favoris au départ de nos agences.
+            Nos équipes partagent leurs itinéraires de référence au départ de nos agences, associés
+            au modèle le mieux adapté à chaque relief.
           </p>
         </div>
 
@@ -243,16 +327,12 @@
             <span class="route-distance">Nice → Saint-Tropez · 140 km</span>
             <h3>La Corniche d’Or</h3>
             <p>
-              Roches rouges de l’Estérel plongeant dans la Méditerranée, virages fluides au lever du
-              soleil et haltes discrètes en bord de crique.
+              Roches rouges de l’Estérel plongeant dans la Méditerranée, courbes fluides au lever du
+              jour et haltes discrètes en bord de mer.
             </p>
             <div class="route-footer">
               <span>Conseillé : Riviera Spider 65</span>
-              <button
-                type="button"
-                class="route-car-link"
-                data-recommend-car="riviera-spider-65"
-              >
+              <button type="button" class="route-car-link" data-recommend-car="riviera-spider-65">
                 Voir le véhicule →
               </button>
             </div>
@@ -262,16 +342,12 @@
             <span class="route-distance">Annecy → Megève · 95 km</span>
             <h3>Traversée des Aravis</h3>
             <p>
-              Lac émeraude, cols panoramiques et chalets d’altitude. La motricité hybride 4×4 offre
-              un silence royal face aux sommets.
+              Lac alpin, cols panoramiques et routes d’altitude. La transmission intégrale hybride
+              garantit motricité et silence en toute saison.
             </p>
             <div class="route-footer">
               <span>Conseillé : Alpinia Rover PHEV</span>
-              <button
-                type="button"
-                class="route-car-link"
-                data-recommend-car="alpinia-rover-phev"
-              >
+              <button type="button" class="route-car-link" data-recommend-car="alpinia-rover-phev">
                 Voir le véhicule →
               </button>
             </div>
@@ -281,16 +357,12 @@
             <span class="route-distance">Bordeaux → Biarritz · 210 km</span>
             <h3>Pinèdes &amp; Océan</h3>
             <p>
-              Des forêts landaises jusqu’aux plages basques, voyagez à sept avec planches, valises
-              et tout le confort d’un salon grand voyage.
+              Des forêts landaises jusqu’à la côte basque : sept places modulables, bagages
+              généreux et coffre de toit inclus pour voyager sans contrainte.
             </p>
             <div class="route-footer">
               <span>Conseillé : Atlantique Grand Van</span>
-              <button
-                type="button"
-                class="route-car-link"
-                data-recommend-car="atlantique-grand-van"
-              >
+              <button type="button" class="route-car-link" data-recommend-car="atlantique-grand-van">
                 Voir le véhicule →
               </button>
             </div>
@@ -300,7 +372,7 @@
     </section>
 
     <!-- Atelier Story -->
-    <section id="atelier" class="section experience-section">
+    <section id="atelier" class="section section-surface">
       <div class="container">
         <div class="atelier-grid">
           <div class="atelier-media reveal">
@@ -313,15 +385,14 @@
 
           <div class="reveal">
             <span class="eyebrow">L’Atelier Route Libre</span>
-            <h2 class="section-title">Une maison indépendante, à taille humaine.</h2>
+            <h2 class="section-title">Une maison indépendante, exigeante sur chaque détail.</h2>
             <p class="section-lead">
-              Née de l’envie de redonner ses lettres de noblesse à la location automobile, Route
-              Libre réunit une sélection resserrée de véhicules récents, entretenus dans nos propres
-              ateliers et confiés par des conseillers passionnés.
+              Route Libre réunit une flotte volontairement resserrée de véhicules récents, entretenus
+              exclusivement dans le réseau constructeur et préparés à la main avant chaque départ.
             </p>
             <p class="section-lead">
-              Que vous partiez deux jours en déplacement ou deux semaines sur les routes de France,
-              un interlocuteur unique suit votre trajet du premier clic au retour des clés.
+              Un conseiller nominatif accompagne votre dossier de la confirmation jusqu’au contrôle
+              de retour, réalisé en 5 minutes chrono.
             </p>
 
             <div class="atelier-stats">
@@ -335,11 +406,11 @@
               </div>
               <div>
                 <div class="stat-value">4,9/5</div>
-                <div class="stat-label">Note moyenne sur plus de 1 200 départs</div>
+                <div class="stat-label">Note moyenne sur 1 240 locations vérifiées</div>
               </div>
               <div>
-                <div class="stat-value">24/7</div>
-                <div class="stat-label">Conciergerie et assistance dédiées</div>
+                <div class="stat-value">&lt; 10 min</div>
+                <div class="stat-label">Temps moyen de réponse conciergerie</div>
               </div>
             </div>
           </div>
@@ -347,21 +418,84 @@
       </div>
     </section>
 
-    <!-- Communication Channels -->
+    <!-- Verified Client Reviews -->
+    <section id="avis" class="section">
+      <div class="container">
+        <div class="section-header-row reveal">
+          <div>
+            <span class="eyebrow">Avis Vérifiés</span>
+            <h2 class="section-title">La confiance de nos conducteurs.</h2>
+            <p class="section-lead">
+              Retours authentiques de particuliers et d’entreprises ayant pris la route avec nos
+              véhicules ces derniers mois.
+            </p>
+          </div>
+        </div>
+
+        <div class="reviews-grid">
+          <article class="review-card reveal">
+            <div class="review-stars" aria-label="5 étoiles sur 5">★★★★★</div>
+            <p class="review-quote">
+              « Livraison ponctuelle à la gare de Nice-Ville, véhicule impeccable et contrat bouclé
+              en quatre minutes. Aucun frais caché au retour, c’est enfin le niveau de sérieux qu’on
+              attend d’un loueur. »
+            </p>
+            <div class="review-author">
+              <div>
+                <strong>Sébastien M.</strong>
+                <div class="review-meta">Nice · Riviera Spider 65</div>
+              </div>
+              <span class="review-meta">Octobre 2026</span>
+            </div>
+          </article>
+
+          <article class="review-card reveal">
+            <div class="review-stars" aria-label="5 étoiles sur 5">★★★★★</div>
+            <p class="review-quote">
+              « J’ai utilisé le rappel gratuit car je n’avais plus de crédit sur mon forfait en
+              arrivant à l’aéroport : rappelé en moins de cinq minutes et l’Alpinia Rover nous
+              attendait à l’hôtel. »
+            </p>
+            <div class="review-author">
+              <div>
+                <strong>Nadia B.</strong>
+                <div class="review-meta">Lyon · Alpinia Rover PHEV</div>
+              </div>
+              <span class="review-meta">Septembre 2026</span>
+            </div>
+          </article>
+
+          <article class="review-card reveal">
+            <div class="review-stars" aria-label="5 étoiles sur 5">★★★★★</div>
+            <p class="review-quote">
+              « Nous passons par Route Libre pour nos déplacements clients à Paris. La Souveraine
+              S-Line est silencieuse, irréprochable, et la facturation entreprise est envoyée le jour même. »
+            </p>
+            <div class="review-author">
+              <div>
+                <strong>Julien D.</strong>
+                <div class="review-meta">Paris 8e · Souveraine S-Line</div>
+              </div>
+              <span class="review-meta">Novembre 2026</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Communication Channels & No-Credit Callback -->
     <section id="communication" class="section comm-section">
       <div class="container">
         <div class="reveal">
           <span class="eyebrow">Canaux de communication</span>
           <h2 class="section-title">Restons joignables, sur votre canal préféré.</h2>
           <p class="section-lead">
-            Une question sur un véhicule, une demande de livraison sur-mesure ou un départ de
-            dernière minute ? Notre équipe vous répond directement par message, téléphone, e-mail ou
-            vous rappelle gratuitement.
+            Choisissez le moyen le plus simple pour vous : message WhatsApp, ligne directe, e-mail
+            ou rappel gratuit si vous n’avez pas de solde téléphonique.
           </p>
         </div>
 
         <div class="comm-grid">
-          <!-- WhatsApp -->
           <article class="comm-card is-whatsapp reveal">
             <div class="comm-card-head">
               <span class="comm-icon" aria-hidden="true">
@@ -372,23 +506,16 @@
               <span class="comm-availability">Réponse &lt; 10 min</span>
             </div>
             <h3>WhatsApp Direct</h3>
-            <p>Échangez en temps réel avec un conseiller, recevez photos et disponibilités immédiates.</p>
-            <div class="comm-detail">+33 6 48 12 79 30</div>
+            <p>Échangez en direct avec un conseiller, recevez photos du véhicule et disponibilités.</p>
+            <div class="comm-detail tabular">+33 6 48 12 79 30</div>
             <div class="comm-actions">
-              <a
-                id="whatsapp-direct-link"
-                href="https://wa.me/33648127930"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="comm-link"
-              >
+              <a id="whatsapp-direct-link" href="https://wa.me/33648127930" target="_blank" rel="noopener noreferrer" class="comm-link">
                 Écrire sur WhatsApp →
               </a>
               <button type="button" class="copy-btn" data-copy="+33 6 48 12 79 30">Copier</button>
             </div>
           </article>
 
-          <!-- Téléphone -->
           <article class="comm-card reveal">
             <div class="comm-card-head">
               <span class="comm-icon" aria-hidden="true">
@@ -399,15 +526,14 @@
               <span class="comm-availability">7j/7 · 08h – 21h</span>
             </div>
             <h3>Ligne Conciergerie</h3>
-            <p>Un interlocuteur dédié pour organiser une location, une prolongation ou une assistance.</p>
-            <div class="comm-detail">+33 (0)1 86 95 42 10</div>
+            <p>Un conseiller dédié pour réserver, modifier un horaire ou organiser une livraison.</p>
+            <div class="comm-detail tabular">+33 (0)1 86 95 42 10</div>
             <div class="comm-actions">
               <a href="tel:+33186954210" class="comm-link">Appeler maintenant →</a>
               <button type="button" class="copy-btn" data-copy="+33 1 86 95 42 10">Copier</button>
             </div>
           </article>
 
-          <!-- E-mail -->
           <article class="comm-card reveal">
             <div class="comm-card-head">
               <span class="comm-icon" aria-hidden="true">
@@ -419,7 +545,7 @@
               <span class="comm-availability">Réponse &lt; 2h</span>
             </div>
             <h3>E-mail &amp; Devis Pro</h3>
-            <p>Mariages, tournages, séminaires d’entreprise et locations longue durée sur-mesure.</p>
+            <p>Demandes entreprises, mariages, séminaires et contrats longue durée personnalisés.</p>
             <div class="comm-detail">bonjour@routelibre.fr</div>
             <div class="comm-actions">
               <a href="mailto:bonjour@routelibre.fr?subject=Demande%20de%20location%20Route%20Libre" class="comm-link">Envoyer un e-mail →</a>
@@ -427,7 +553,6 @@
             </div>
           </article>
 
-          <!-- Salons -->
           <article class="comm-card reveal">
             <div class="comm-card-head">
               <span class="comm-icon" aria-hidden="true">
@@ -436,10 +561,10 @@
                   <circle cx="12" cy="10" r="3"/>
                 </svg>
               </span>
-              <span class="comm-availability">4 villes en France</span>
+              <span class="comm-availability">4 salons en France</span>
             </div>
             <h3>Accueil en Salon</h3>
-            <p>Venez découvrir nos véhicules autour d’un café dans nos salons privés sur rendez-vous.</p>
+            <p>Découvrez nos modèles autour d’un café et finalisez votre dossier sur rendez-vous.</p>
             <div class="comm-detail">Paris 8e · Nice · Lyon · Biarritz</div>
             <div class="comm-actions">
               <a href="#contact" class="comm-link">Prendre rendez-vous →</a>
@@ -447,25 +572,22 @@
           </article>
         </div>
 
+        <!-- Prominent "Vous n'avez pas de solde ?" Callback Hub + Socials -->
         <div class="comm-bottom-grid">
           <div id="rappel-gratuit" class="callback-box reveal">
-            <span class="callback-eyebrow">Rappel gratuit · Sans crédit</span>
+            <span class="callback-eyebrow">Service 100 % gratuit · Sans crédit téléphonique</span>
             <h3>Vous n’avez pas de solde ? Laissez votre numéro, on vous rappelle.</h3>
             <p>
-              Pas besoin de crédit téléphonique pour nous joindre. Indiquez simplement votre numéro et
-              un conseiller Route Libre vous rappelle gratuitement.
+              Pas besoin de crédit pour nous appeler. Indiquez votre indicatif et votre numéro : un
+              conseiller Route Libre vous rappelle gratuitement au créneau de votre choix.
             </p>
             <form id="callback-form" class="callback-form">
               <div>
                 <label for="callback-name" class="sr-only">Votre prénom (optionnel)</label>
-                <input
-                  id="callback-name"
-                  type="text"
-                  placeholder="Votre prénom (optionnel)"
-                />
+                <input id="callback-name" type="text" placeholder="Votre prénom (optionnel)" />
               </div>
               <div>
-                <label for="callback-slot" class="sr-only">Créneau de rappel</label>
+                <label for="callback-slot" class="sr-only">Quand vous rappeler ?</label>
                 <select id="callback-slot">
                   <option value="dès que possible (&lt; 15 min)">Rappel immédiat (&lt; 15 min)</option>
                   <option value="dans l’heure">Dans l’heure</option>
@@ -474,40 +596,63 @@
                   <option value="en soirée">En soirée</option>
                 </select>
               </div>
-              <div class="callback-phone-wrap">
-                <label for="callback-phone" class="sr-only">Votre numéro de téléphone</label>
+              <div class="callback-phone-row">
+                <label for="callback-country" class="sr-only">Indicatif pays</label>
+                <select id="callback-country" aria-label="Indicatif pays">
+                  <option value="+212">+212 (MA)</option>
+                  <option value="+33" selected>+33 (FR)</option>
+                  <option value="+32">+32 (BE)</option>
+                  <option value="+41">+41 (CH)</option>
+                  <option value="+1">+1 (INT)</option>
+                </select>
+                <label for="callback-phone" class="sr-only">Numéro de téléphone</label>
                 <input
                   id="callback-phone"
                   type="tel"
-                  placeholder="Votre numéro (ex. 06 12 34 56 78)"
+                  placeholder="6 12 34 56 78"
                   required
                 />
-                <button type="submit" class="btn btn-accent">Rappelez-moi gratuitement</button>
+                <button type="submit" class="btn btn-accent">Rappelez-moi</button>
               </div>
             </form>
+            <p class="callback-reassurance">
+              Votre numéro sert uniquement à vous rappeler pour votre demande. Aucune prospection commerciale.
+            </p>
             <div id="callback-feedback" class="callback-feedback" role="status" aria-live="polite"></div>
           </div>
 
           <div class="social-bar reveal">
-            <span class="callback-eyebrow">Réseaux sociaux</span>
+            <span class="callback-eyebrow">Réseaux officiels</span>
             <h3>Suivre Route Libre</h3>
-            <p>Nouveaux véhicules en flotte, coulisses de l’atelier et carnets d’itinéraires publiés chaque semaine.</p>
+            <p>Arrivages de véhicules, préparations atelier et suggestions d’itinéraires chaque semaine.</p>
             <div class="social-links-row">
               <a href="#communication" class="social-chip">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-                Instagram · @routelibre.fr
+                <span class="social-chip-left">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                  Instagram
+                </span>
+                <span style="opacity: 0.7; font-size: 0.78rem;">@routelibre.fr</span>
               </a>
               <a href="#communication" class="social-chip">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                Facebook
+                <span class="social-chip-left">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                  Facebook
+                </span>
+                <span style="opacity: 0.7; font-size: 0.78rem;">Route Libre</span>
               </a>
               <a href="#communication" class="social-chip">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                LinkedIn
+                <span class="social-chip-left">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                  LinkedIn
+                </span>
+                <span style="opacity: 0.7; font-size: 0.78rem;">Pôle Entreprises</span>
               </a>
               <a href="#communication" class="social-chip">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
-                TikTok
+                <span class="social-chip-left">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+                  TikTok
+                </span>
+                <span style="opacity: 0.7; font-size: 0.78rem;">@routelibre</span>
               </a>
             </div>
           </div>
@@ -515,15 +660,74 @@
       </div>
     </section>
 
-    <!-- Reservation / Contact -->
+    <!-- FAQ Accordion -->
+    <section id="faq" class="section section-surface">
+      <div class="container faq-grid">
+        <div class="reveal">
+          <span class="eyebrow">Questions Fréquentes</span>
+          <h2 class="section-title">Tout savoir avant de prendre le volant.</h2>
+          <p class="section-lead">
+            Des réponses claires sur les documents, la caution, les assurances et nos services de
+            livraison. Besoin d’un renseignement précis ? Demandez un rappel gratuit.
+          </p>
+        </div>
+
+        <div class="faq-list reveal">
+          <details class="faq-item" open>
+            <summary>Quels documents sont nécessaires pour louer un véhicule ?</summary>
+            <div class="faq-answer">
+              Un permis de conduire valide (détenu depuis au moins 2 ans selon la catégorie), une
+              pièce d’identité (carte nationale ou passeport) ainsi qu’une carte bancaire au nom du
+              conducteur principal pour l’empreinte de caution.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Comment fonctionne la caution ? Est-elle débitée ?</summary>
+            <div class="faq-answer">
+              Non, la caution fait l’objet d’une simple pré-autorisation bancaire (empreinte) non
+              débitée. Elle est libérée automatiquement dès la restitution conforme du véhicule.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>L’assurance tous risques et le second conducteur sont-ils inclus ?</summary>
+            <div class="faq-answer">
+              Oui. Chaque location Route Libre intègre l’assurance Sérénité tous risques,
+              l’assistance dépannage 24h/24 et l’ajout gratuit d’un second conducteur déclaré au
+              contrat.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Puis-je me faire livrer la voiture à l’aéroport, en gare ou à l’hôtel ?</summary>
+            <div class="faq-answer">
+              Absolument. Vous pouvez cocher l’option « Livraison aéroport / gare / hôtel » dans le
+              formulaire de pré-réservation ci-dessous et préciser votre numéro de vol ou de train.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Comment fonctionne le service « Pas de solde ? On vous rappelle » ?</summary>
+            <div class="faq-answer">
+              Si vous n’avez pas de crédit d’appel, laissez simplement votre numéro dans l’encart
+              dédié (ou via le bouton « Nous contacter »). Un conseiller vous appelle gratuitement au
+              créneau demandé, partout en France et à l’international.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reservation Checkout -->
     <section id="contact" class="section contact-section">
       <div class="container">
         <div class="reveal">
-          <span class="eyebrow">Pré-réservation &amp; Devis</span>
+          <span class="eyebrow">Pré-réservation &amp; Devis Instantané</span>
           <h2 class="section-title">Préparez votre prochain départ.</h2>
           <p class="section-lead">
-            Complétez votre demande en quelques secondes. Notre équipe vérifie la disponibilité et
-            vous confirme votre réservation sans acompte immédiat.
+            Configurez votre véhicule, vos dates et vos options. Le montant TTC se met à jour en
+            temps réel — aucun paiement n’est exigé pour bloquer une disponibilité.
           </p>
         </div>
 
@@ -557,52 +761,71 @@
 
               <div class="form-field">
                 <label for="form-name">Nom complet</label>
-                <input
-                  id="form-name"
-                  type="text"
-                  name="name"
-                  placeholder="Camille Laurent"
-                  required
-                />
+                <input id="form-name" type="text" name="name" placeholder="Camille Laurent" required />
               </div>
 
               <div class="form-field">
-                <label for="form-email">Adresse e-mail</label>
-                <input
-                  id="form-email"
-                  type="email"
-                  name="email"
-                  placeholder="camille@exemple.fr"
-                  required
-                />
+                <label for="form-phone">Téléphone</label>
+                <input id="form-phone" type="tel" name="phone" placeholder="+33 6 12 34 56 78" required />
               </div>
 
               <div class="form-field full-width">
-                <label for="form-notes">Précisions (livraison hôtel/gare, siège enfant, horaires…)</label>
+                <label for="form-email">Adresse e-mail</label>
+                <input id="form-email" type="email" name="email" placeholder="camille@exemple.fr" required />
+              </div>
+
+              <!-- Interactive Options -->
+              <div class="addons-block">
+                <div class="addons-title">Options &amp; Services sur-mesure</div>
+                <div class="addons-grid">
+                  <label class="addon-option">
+                    <span><input type="checkbox" class="addon-checkbox" data-addon="delivery" data-label="Livraison aéroport / gare / hôtel" data-type="flat" data-price="35" /> Livraison aéroport / hôtel</span>
+                    <span class="addon-price">+35 €</span>
+                  </label>
+                  <label class="addon-option">
+                    <span><input type="checkbox" class="addon-checkbox" data-addon="unlimited-km" data-label="Kilométrage illimité" data-type="daily" data-price="18" /> Kilométrage illimité</span>
+                    <span class="addon-price">+18 € / j</span>
+                  </label>
+                  <label class="addon-option">
+                    <span><input type="checkbox" class="addon-checkbox" data-addon="isofix" data-label="Siège enfant Isofix" data-type="flat" data-price="0" /> Siège enfant Isofix</span>
+                    <span class="addon-price">Offert</span>
+                  </label>
+                  <label class="addon-option">
+                    <span><input type="checkbox" class="addon-checkbox" data-addon="wifi" data-label="Routeur Wi-Fi 5G embarqué" data-type="flat" data-price="0" /> Wi-Fi 5G embarqué</span>
+                    <span class="addon-price">Offert</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-field full-width">
+                <label for="form-notes">Précisions (numéro de vol, adresse de livraison, horaires…)</label>
                 <textarea
                   id="form-notes"
                   name="notes"
-                  placeholder="Ex. Livraison souhaitée à 10h en gare de Nice-Ville…"
+                  placeholder="Ex. Arrivée vol AF7702 à 10h30, livraison souhaitée au terminal…"
                 ></textarea>
               </div>
             </div>
 
             <div class="form-footer">
-              <span class="form-note">Aucun paiement requis à cette étape · Réponse sous 30 min</span>
-              <button type="submit" class="btn btn-accent">Envoyer la demande</button>
+              <span class="form-note">Sans acompte immédiat · Confirmation garantie sous 30 min</span>
+              <button type="submit" class="btn btn-accent">Confirmer la pré-réservation</button>
             </div>
 
             <div id="confirmation-banner" class="confirmation-banner" role="status" aria-live="polite"></div>
           </form>
 
-          <aside class="summary-card reveal" aria-label="Récapitulatif de l’estimation">
-            <h3>Votre estimation</h3>
+          <aside class="summary-card reveal" aria-label="Récapitulatif détaillé du devis">
+            <div class="summary-card-head">
+              <h3>Votre devis</h3>
+              <span id="summary-ref" class="summary-ref tabular">DEVIS #RL-2026</span>
+            </div>
 
             <div class="summary-car-preview">
               <img id="summary-car-img" src="./assets/cabriolet.jpg" alt="Véhicule sélectionné" />
               <div>
                 <strong id="summary-car-name">Riviera Spider 65</strong>
-                <div id="summary-car-meta" style="font-size: 0.8rem; color: var(--ink-on-dark-muted); margin-top: 0.2rem;">
+                <div id="summary-car-meta" style="font-size: 0.78rem; color: var(--ink-on-dark-muted); margin-top: 0.2rem;">
                   Cabriolet · Essence
                 </div>
               </div>
@@ -618,18 +841,28 @@
                 <strong id="summary-dates">3 jours</strong>
               </div>
               <div class="summary-row">
-                <span>Location</span>
+                <span>Forfait véhicule</span>
                 <strong id="summary-rate">240 € × 3 jours</strong>
               </div>
               <div class="summary-row">
-                <span>Assurance Sérénité &amp; 2e conducteur</span>
+                <span>Caution (empreinte)</span>
+                <strong id="summary-deposit">2 000 €</strong>
+              </div>
+              <div class="summary-row">
+                <span>Assurance &amp; 2e conducteur</span>
                 <strong>Inclus</strong>
               </div>
+              <div id="summary-addons-rows"></div>
             </div>
 
             <div class="summary-total">
               <span class="summary-total-label">Total estimé TTC</span>
               <span id="summary-total" class="summary-total-price">720 €</span>
+            </div>
+
+            <div class="summary-secondary-actions">
+              <button id="copy-quote-btn" type="button" class="btn btn-outline-light">Copier le devis</button>
+              <button id="print-quote-btn" type="button" class="btn btn-outline-light">Imprimer / PDF</button>
             </div>
           </aside>
         </div>
@@ -643,28 +876,33 @@
       <div class="footer-grid">
         <div>
           <div class="brand footer-brand">
-            <span class="brand-mark" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="14" cy="14" r="12.5" stroke="currentColor" stroke-width="1.35" />
-                <path d="M7.5 19.5C10.5 13 13 10.5 20.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
-                <circle cx="20.5" cy="8.5" r="2" fill="currentColor" />
-              </svg>
-            </span>
+            <svg width="24" height="24" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+              <circle cx="14" cy="14" r="12.5" stroke="currentColor" stroke-width="1.35" />
+              <path d="M7.5 19.5C10.5 13 13 10.5 20.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+              <circle cx="20.5" cy="8.5" r="2" fill="currentColor" />
+            </svg>
             <span>Route Libre</span>
           </div>
-          <p style="max-width: 34ch; line-height: 1.6;">
-            Maison indépendante de location de véhicules de caractère. Mobilité libre, claire et
-            soignée partout en France.
+          <p style="max-width: 34ch; line-height: 1.65;">
+            Maison indépendante de location de véhicules de caractère et conciergerie automobile.
+            Mobilité claire, soignée et disponible 7j/7.
           </p>
+          <div class="footer-payments" aria-label="Moyens de paiement acceptés">
+            <span class="payment-tag">Visa</span>
+            <span class="payment-tag">Mastercard</span>
+            <span class="payment-tag">Amex</span>
+            <span class="payment-tag">Virement Pro</span>
+          </div>
         </div>
 
         <div class="footer-col">
           <h4>Navigation</h4>
           <ul>
             <li><a href="#flotte">La Flotte</a></li>
-            <li><a href="#experience">L’Expérience</a></li>
-            <li><a href="#itineraires">Itinéraires</a></li>
-            <li><a href="#atelier">L’Atelier</a></li>
+            <li><a href="#experience">Engagements</a></li>
+            <li><a href="#itineraires">Carnets de Route</a></li>
+            <li><a href="#avis">Avis clients</a></li>
+            <li><a href="#faq">FAQ</a></li>
           </ul>
         </div>
 
@@ -679,18 +917,19 @@
         </div>
 
         <div class="footer-col">
-          <h4>Contact Direct</h4>
+          <h4>Canaux Directs</h4>
           <ul>
-            <li>bonjour@routelibre.fr</li>
-            <li>+33 (0)1 86 95 42 10</li>
-            <li>Ouvert 7j/7 · 08h00 – 21h00</li>
+            <li><a href="#rappel-gratuit">Rappel gratuit (sans solde)</a></li>
+            <li><a href="tel:+33186954210">+33 (0)1 86 95 42 10</a></li>
+            <li><a href="https://wa.me/33648127930" target="_blank" rel="noopener noreferrer">WhatsApp : +33 6 48 12 79 30</a></li>
+            <li><a href="mailto:bonjour@routelibre.fr">bonjour@routelibre.fr</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <span>© 2026 Route Libre — Tous droits réservés.</span>
-        <span>Site vitrine &amp; portfolio de démonstration</span>
+        <span>© 2026 Route Libre SAS — Tous droits réservés.</span>
+        <span>Conditions générales de location · Politique de confidentialité · Mentions légales</span>
       </div>
     </div>
   </footer>
@@ -712,8 +951,8 @@
       <div class="modal-body">
         <div>
           <span id="modal-category" class="eyebrow" style="margin-bottom: 0.35rem;"></span>
-          <h3 id="modal-title" class="section-title" style="font-size: 2.15rem;"></h3>
-          <p id="modal-desc" style="font-size: 0.9rem; color: var(--ink-secondary); margin-top: 0.65rem;"></p>
+          <h3 id="modal-title" class="section-title" style="font-size: 2.1rem;"></h3>
+          <p id="modal-desc" style="font-size: 0.88rem; color: var(--ink-secondary); margin-top: 0.6rem;"></p>
         </div>
 
         <div class="modal-specs-grid">
@@ -730,7 +969,7 @@
             <span id="modal-seats" class="spec-val"></span>
           </div>
           <div class="spec-item">
-            <span class="spec-label">Caution</span>
+            <span class="spec-label">Caution (empreinte)</span>
             <span id="modal-deposit" class="spec-val"></span>
           </div>
         </div>
@@ -740,13 +979,13 @@
           <ul id="modal-perks" class="modal-perks"></ul>
         </div>
 
-        <div style="margin-top: auto; padding-top: 0.75rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+        <div style="margin-top: auto; padding-top: 0.8rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
           <div>
-            <div id="modal-price" style="font-size: 1.35rem; font-weight: 700;"></div>
-            <div id="modal-total" style="font-size: 0.78rem; color: var(--accent); font-weight: 600;"></div>
+            <div id="modal-price" class="tabular" style="font-size: 1.35rem; font-weight: 700;"></div>
+            <div id="modal-total" class="tabular" style="font-size: 0.78rem; color: var(--accent); font-weight: 600;"></div>
           </div>
           <button id="modal-book-btn" type="button" class="btn btn-accent" data-car-id="">
-            Réserver ce véhicule
+            Configurer ce véhicule
           </button>
         </div>
       </div>
@@ -769,19 +1008,19 @@
           class="concierge-channel-item"
         >
           <span>WhatsApp Direct</span>
-          <span style="color: hsl(142, 56%, 28%); font-size: 0.76rem;">&lt; 10 min</span>
+          <span style="color: var(--success); font-size: 0.74rem; font-weight: 600;">&lt; 10 min</span>
         </a>
         <a href="tel:+33186954210" class="concierge-channel-item">
-          <span>Appeler · 01 86 95 42 10</span>
-          <span style="color: var(--ink-muted); font-size: 0.76rem;">7j/7</span>
+          <span class="tabular">Appeler · 01 86 95 42 10</span>
+          <span style="color: var(--ink-muted); font-size: 0.74rem;">7j/7</span>
         </a>
         <a href="mailto:bonjour@routelibre.fr" class="concierge-channel-item">
           <span>bonjour@routelibre.fr</span>
-          <span style="color: var(--ink-muted); font-size: 0.76rem;">E-mail</span>
+          <span style="color: var(--ink-muted); font-size: 0.74rem;">E-mail</span>
         </a>
         <a href="#contact" id="fab-booking-link" class="concierge-channel-item">
-          <span>Formulaire de pré-réservation</span>
-          <span style="color: var(--accent); font-size: 0.76rem;">Devis →</span>
+          <span>Devis &amp; pré-réservation</span>
+          <span style="color: var(--accent); font-size: 0.74rem; font-weight: 600;">Ouvrir →</span>
         </a>
       </div>
 
